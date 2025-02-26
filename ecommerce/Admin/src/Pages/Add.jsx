@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { imagens } from "../assets/assets";
-import { backendUrl } from "../App.jsx";
 
-const Add = ({ token }) => {
+const Add = () => {
   const [image1, setImage1] = useState(false);
   const [image2, setImage2] = useState(false);
   const [image3, setImage3] = useState(false);
@@ -35,11 +34,11 @@ const Add = ({ token }) => {
       image4 && formData.append("image4", image4);
 
       const response = await axios.post(
-        backendUrl + "/api/produto/addproduto",
+         + "/api/produto/addproduto",
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${""}`
           }
         }
       );

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { backendUrl, moeda } from "../App";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong, faRightLong, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Lista = ({ token }) => {
+const Lista = () => {
   const [lista, setLista] = useState([]);
   const [precoOrdenado, setPrecoOrdenado] = useState("crescente");
   const [categoria, setCategoria] = useState("");
@@ -19,7 +18,7 @@ const Lista = ({ token }) => {
 
   const ListaProdutos = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/produto/listaproduto");
+      const response = await axios.get( + "/api/produto/listaproduto");
       console.log(response.data);
       
       if (response.data.success) {
@@ -36,9 +35,9 @@ const Lista = ({ token }) => {
   const removerProduto = async (id) => {
     try {
       const response = await axios.post(
-        backendUrl + "/api/produto/removerproduto",
+         + "/api/produto/removerproduto",
         { id },
-        { headers: { token } }
+        { headers: { } }
       );
       if (response.data.success) {
         toast.success(response.data.message);
@@ -178,7 +177,7 @@ const Lista = ({ token }) => {
           <p>{item.nome}</p>
           <p>{item.categoria}</p>
           <p>
-            {moeda}
+            {}
             {item.preco}
           </p>
           <p
@@ -196,7 +195,7 @@ const Lista = ({ token }) => {
       {showModal && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-[300px] text-center">
-            <h2 className="text-xl mb-4">Digite "confirmar" para remover o produto:</h2>
+            <h2 className="text-xl mb-4">Digite confirmar para remover o produto:</h2>
             <input
               type="text"
               value={confirmacao}

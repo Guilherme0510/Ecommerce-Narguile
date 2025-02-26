@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { backendUrl } from "../App";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { imagens } from "../assets/assets";
 import { faRightLong, faLeftLong } from "@fortawesome/free-solid-svg-icons";
 
-const Entrega = ({ token }) => {
+const Entrega = () => {
   const [pedidos, setPedidos] = useState([]);
   const [pesquisa, setPesquisa] = useState("");
   const [filtroPagamento, setFiltroPagamento] = useState("");
@@ -18,9 +17,9 @@ const Entrega = ({ token }) => {
   const fetchTodosPedidos = async () => {
     try {
       const response = await axios.post(
-        `${backendUrl}/api/pedido/lista`,
+        `${""}/api/pedido/lista`,
         {},
-        { headers: { token } }
+        { headers: { } }
       );
       console.log("Resposta da API:", response.data.pedidos);
 
@@ -43,9 +42,9 @@ const Entrega = ({ token }) => {
   const handleStatusChange = async (pedidoId, novoStatus) => {
     try {
       const response = await axios.post(
-        backendUrl + "/api/pedido/status",
+         + "/api/pedido/status",
         { pedidoId, status: novoStatus },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${""}` } }
       );
 
       if (response.data.success) {
@@ -60,9 +59,9 @@ const Entrega = ({ token }) => {
   const handlePagamentoChange = async (pedidoId, pagamentoAtivo) => {
     try {
       const response = await axios.post(
-        backendUrl + "/api/pedido/pagamento",
+         + "/api/pedido/pagamento",
         { pedidoId, pagamento: pagamentoAtivo },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${""}` } }
       );
 
       if (response.data.success) {
@@ -103,7 +102,7 @@ const Entrega = ({ token }) => {
   // Função para paginação
   const paginarPedidos = () => {
     const pedidosFiltrados = filtrarPedidos();
-    const totalPaginas = Math.ceil(pedidosFiltrados.length / itensPorPagina);
+    // const totalPaginas = Math.ceil(pedidosFiltrados.length / itensPorPagina);
 
     // Calculando os pedidos a serem exibidos na página atual
     const inicio = (paginaAtual - 1) * itensPorPagina;
@@ -123,7 +122,7 @@ const Entrega = ({ token }) => {
 
   useEffect(() => {
     fetchTodosPedidos();
-  }, [token]);
+  }, []);
 
   return (
     <div>
