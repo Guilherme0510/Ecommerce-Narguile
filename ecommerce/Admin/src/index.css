@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@100..900&family=Prata&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+}
+
+* {
+  font-family: "Bebas Neue", sans-serif;
+}
